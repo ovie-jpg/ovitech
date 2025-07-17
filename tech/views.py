@@ -16,11 +16,12 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
-def info(request):
+def info(request, pk):
+    project= Projects.objects.get(pk=pk)
     context= {
-
+        'project':project
     }
-    return render(request, 'about-us.html', context)
+    return render(request, 'info.html', context)
 
 class AddProject(CreateView):
     model= Projects

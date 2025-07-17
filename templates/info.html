@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{project.name}}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Ovitech</a>
+            <div class="hamburger">☰</div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#">Web Designs</a></li>
+                <li><a href="#">Live Samples</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section class="content">
+            <h1>{{project.name}}</h1>
+            <h4>{{project.title}}</h4>
+            <div class="image-container">
+                <img src="{{project.img.url}}" alt="Project Image">
+            </div>
+            <p>{{project.bio}}</p>
+            <div class="button-container">
+                <a href= "https://wa.me/qr/HOUJPH4Y4AZCP1"><button class="action-button whatsapp">WhatsApp</button></a>
+                {% if user.is_staff %}
+                <a href="{% url 'edit-project' project.pk %}"><button class="action-button edit">Edit</button></a>
+                <a href="{% url 'delete-project' project.pk %}"><button class="action-button delete">Delete</button></a>
+                {% endif %}
+                <a href="{{project.link}}"><button class="action-button view-live">View Live</button></a>
+            </div>
+        </section>
+    </main>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
